@@ -9,17 +9,59 @@ const createTask = (evento) => {
     task.classList.add("card")
     inputText.value = "";
     //backticks alt+96 
-    const content = `<div>
-    <i class="far fa-check-square icon"></i>
-    <span class="task">${value}</span>
-  </div>
-  <i class="fas fa-edit editIcon icon"></i>
-  <i class="fas fa-trash-alt trashIcon icon"></i>`
-  task.innerHTML = content;
+    const taskContent = document.createElement("div");
+    taskContent.appendChild(checkComplete());
+    const titleTask = document.createElement("span");
+    titleTask.classList.add("task");
+    titleTask.innerText = value;
+    taskContent.appendChild(titleTask);
+    const taskIcon1 = document.createElement("i")
+    taskIcon1.appendChild(editComplete());
+    taskContent.appendChild(taskIcon1);
+    const taskIcon2 = document.createElement("i");
+    taskIcon2.appendChild(deleteComplete());
+    taskContent.appendChild(taskIcon2);
+    
+
+    
+  //task.innerHTML = content;
+  task.appendChild(taskContent);
   list.appendChild(task)
-    console.log(content);
+    
 }
 
-
+// insertBefore(padre, hijo)
+//replaceChild(element 1, element 2)
+//removeChild(elemento)
 //arrow function o funciones anonimas =>
 btn.addEventListener("click", createTask)
+
+const checkComplete = () => {
+  const i = document.createElement("i");
+  i.classList.add("far");
+  i.classList.add("fa-check-square");
+  i.classList.add("icon");
+
+  return i;
+}
+
+const editComplete = () => {
+  const i = document.createElement("i");
+  i.classList.add("fas");
+  i.classList.add("fa-edit");
+  i.classList.add("editIcon");
+  i.classList.add("icon");
+
+  return i;
+}
+
+const deleteComplete = () => {
+  const i = document.createElement("i");
+  i.classList.add("fas");
+  i.classList.add("fa-trash-alt");
+  i.classList.add("trashIcon");
+  i.classList.add("con");
+  
+
+  return i;
+}
