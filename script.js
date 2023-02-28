@@ -1,3 +1,5 @@
+(() => {
+
 const btn = document.querySelector("[data-form-btn]");
 
 const createTask = (evento) => {
@@ -15,15 +17,15 @@ const createTask = (evento) => {
     titleTask.classList.add("task");
     titleTask.innerText = value;
     taskContent.appendChild(titleTask);
-    const taskIcon1 = document.createElement("i")
+    /*const taskIcon1 = document.createElement("i")
     taskIcon1.appendChild(editComplete());
     taskContent.appendChild(taskIcon1);
     const taskIcon2 = document.createElement("i");
     taskIcon2.appendChild(deleteComplete());
-    taskContent.appendChild(taskIcon2);
+    taskContent.appendChild(taskIcon2);*/
     
 
-    
+
   //task.innerHTML = content;
   task.appendChild(taskContent);
   list.appendChild(task)
@@ -36,14 +38,25 @@ const createTask = (evento) => {
 //arrow function o funciones anonimas =>
 btn.addEventListener("click", createTask)
 
+
+// Inmediately invoked function expression IIFE 
 const checkComplete = () => {
   const i = document.createElement("i");
   i.classList.add("far");
   i.classList.add("fa-check-square");
   i.classList.add("icon");
+  i.addEventListener("click", completeTask)
 
   return i;
 }
+
+const completeTask = (event) => {
+  const element = event.target;
+  element.classList.toggle("fas");
+  element.classList.toggle("completeIcon");
+  element.classList.toggle("far");
+}
+
 
 const editComplete = () => {
   const i = document.createElement("i");
@@ -65,3 +78,4 @@ const deleteComplete = () => {
 
   return i;
 }
+})();
